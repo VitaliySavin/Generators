@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `test` (
 
 INSERT INTO test SET sum = '0', count_fib = 0, count_prime = 0;
 ```
-2. redis-cli must be installed. See [https://redis.io/download](https://nodejs.org/)
+2. redis-cli must be installed. See [https://redis.io/download](https://redis.io/download)
 3. Set DB connection params in Constants.php
 4. Run in concole
 ```sh
