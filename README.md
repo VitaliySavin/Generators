@@ -4,7 +4,7 @@
 
 ### Instructions
 
-1. Create table in your data base and execute INSERT SQL query:
+1. Create table in your database and execute INSERT SQL query:
 
 ```sql
 CREATE TABLE IF NOT EXISTS `test` (
@@ -21,7 +21,12 @@ INSERT INTO test SET sum = '0', count_fib = 0, count_prime = 0;
 ```sh
 $ php runMulti.php
 ```
-or
+or run with optional params limit and delay, for example
+```sh
+$ php runMulti.php 2000 100
+```
+
+or run (will be run with default limit and delay)
 ```sh
 $ ./runMulti.sh
 ```

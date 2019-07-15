@@ -8,7 +8,11 @@ spl_autoload_register(function ($class) {
 });
 
 try {
-    Worker::create($argv[1])->run();
+    Worker::create(
+        $argv[1],
+        $argv[2] ?? null,
+        $argv[3] ?? null
+    )->run();
 } catch (\Throwable $exception) {
     echo $exception->getMessage();
 }
