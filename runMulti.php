@@ -11,3 +11,6 @@ exec("php {$dir}run.php consumerPrime {$limit} & \
     $out,
     $exitCode
 );
+
+$out = !empty($out[0]) ? $out[0] : '';
+echo $out, PHP_EOL;

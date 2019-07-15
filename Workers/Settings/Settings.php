@@ -38,13 +38,13 @@ class Settings
         } elseif (Config::TYPE_PRODUCER_PRIME === $type) {
             return new ProducerWorkerSettings(
                 Config::WORKER_SETTINGS['prime']['channel'],
-                is_null($limit) ? (int) $delay : Config::WORKER_SETTINGS['prime']['delay'],
+                !is_null($delay) ? (int) $delay : Config::WORKER_SETTINGS['prime']['delay'],
                 !is_null($limit) ? (int) $limit : Config::WORKER_SETTINGS['prime']['limit']
             );
         } elseif (Config::TYPE_PRODUCER_FIBONACCI === $type) {
             return new ProducerWorkerSettings(
                 Config::WORKER_SETTINGS['fibonacci']['channel'],
-                !is_null($limit) ? (int) $delay : Config::WORKER_SETTINGS['fibonacci']['delay'],
+                !is_null($delay) ? (int) $delay : Config::WORKER_SETTINGS['fibonacci']['delay'],
                 !is_null($limit) ? (int) $limit : Config::WORKER_SETTINGS['fibonacci']['limit']
             );
         } else {
