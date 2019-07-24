@@ -1,11 +1,8 @@
 <?php
 
-use Generators\Workers\Worker;
+require_once __DIR__ . '/vendor/autoload.php';
 
-spl_autoload_register(function ($class) {
-    $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-    include_once dirname(dirname(__FILE__)). DIRECTORY_SEPARATOR. $fileName . '.php';
-});
+use Generators\Workers\Worker;
 
 try {
     Worker::create(

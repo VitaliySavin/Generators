@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Generators\Bus\Implementations;
 
 use Generators\Bus\BusInterface;
+use Predis\Client;
 
 /**
  * @package Generators\Bus\Implementations
  */
 class Redis implements BusInterface
 {
-    private $host;
-    private $port;
+    private $redis;
 
     /**
      * @param string $host
@@ -21,53 +21,29 @@ class Redis implements BusInterface
      */
     public function __construct(string $host, int $port)
     {
-        if (!$this->isInstalled()) {
-            throw new \Exception('redis-cli not installed');
-        }
-
-        $this->host = $host;
-        $this->port = $port;
+        $this->redis = new Client([
+            'scheme' => 'tcp',
+            'host'   => $host,
+            'port'   => $port,
+        ]); 
     }
 
     /**
      * @param string $key
      * @param string $value
-     * @return string
+     * @return int
      */
     public function push(string $key, string $value)
     {
-        $result = $this->execute(sprintf('RPUSH %s %s', $key, $value));
-        $result = $result[0];
-        return $result;
+        return $this->redis->rpush($key, [$value]);
     }
 
     /**
      * @param string $key
-     * @return string|null
+     * @return string
      */
     public function pop(string $key)
     {
-        $result = $this->execute(sprintf('LPOP %s', $key));
-        $result = '' !== $result[0] ? $result[0] : null;
-        return $result;
-    }
-
-    /**
-     * @return bool
-     */
-    private function isInstalled(): bool
-    {
-        exec("redis-cli -v", $out);
-        return !empty($out);
-    }
-
-    /**
-     * @param string $cmd
-     * @return array
-     */
-    private function execute(string $cmd)
-    {
-        exec(sprintf('redis-cli -h %s -p %d %s', $this->host, $this->port, $cmd), $out);
-        return $out;
+        return $this->redis->lpop($key);
     }
 }
