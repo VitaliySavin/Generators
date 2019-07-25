@@ -15,18 +15,22 @@ CREATE TABLE IF NOT EXISTS `test` (
 
 INSERT INTO test SET sum = '0', count_fib = 0, count_prime = 0;
 ```
-2. redis-cli must be installed. See [https://redis.io/download](https://redis.io/download)
+2. Generate autoload files and install vendors:
+```sh
+$ composer install
+```
 3. Set DB connection params in Constants.php
-4. Run in concole
+4. Run in console
 ```sh
 $ php runMulti.php
 ```
 or run with optional params limit and delay, for example
 ```sh
-$ php runMulti.php 2000 100
+$ php runMulti.php 2000 100 5000 200
 ```
+where 2000 - prime limit, 100 - prime delay, 5000 - fib limit, 200 -fib delay
 
-or run (will be run with default limit and delay)
+or run (will be run with default limit and delay (2000 100 5000 100))
 ```sh
 $ ./runMulti.sh
 ```

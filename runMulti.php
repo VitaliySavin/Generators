@@ -1,13 +1,15 @@
 <?php
 $dir = dirname(__FILE__) . DIRECTORY_SEPARATOR;
 
-$limit = $argv[1] ?? '';
-$delay = $argv[2] ?? '';
+$limitPrime = $argv[1] ?? '';
+$delayPrime = $argv[2] ?? '';
+$limitFib = $argv[3] ?? '';
+$delayFib = $argv[4] ?? '';
 
-exec("php {$dir}run.php consumerPrime {$limit} & \
-    php {$dir}run.php consumerFibonacci {$limit} & \
-    php {$dir}run.php producerPrime {$limit} {$delay} & \
-    php {$dir}run.php producerFibonacci {$limit} {$delay}",
+exec("php {$dir}run.php consumerPrime {$limitPrime} & \
+    php {$dir}run.php consumerFibonacci {$limitFib} & \
+    php {$dir}run.php producerPrime {$limitPrime} {$delayPrime} & \
+    php {$dir}run.php producerFibonacci {$limitFib} {$delayFib}",
     $out,
     $exitCode
 );

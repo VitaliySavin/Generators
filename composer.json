@@ -8,6 +8,9 @@
             "Generators\\Bus\\": "Bus",
             "Generators\\Repositories\\": "Repositories",
             "Generators\\Producers\\": "Producers"
-        }
+        },
+        "files": [
+            "Config.php"
+        ]
     }
 }
